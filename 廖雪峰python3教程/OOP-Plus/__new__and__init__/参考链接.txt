@@ -1,0 +1,2 @@
+url1 = 'https://zhuanlan.zhihu.com/p/21379984'-----------------------知乎专栏(原文为Python2.7实现)
+url2 = 'http://www.voidcn.com/article/p-xjuacrqr-bom.html'-----------程序园

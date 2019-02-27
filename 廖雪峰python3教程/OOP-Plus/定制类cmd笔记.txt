@@ -1,0 +1,233 @@
+# !/usr/bin/env python3
+# -*- coding:utf-8 -*-
+>>> class Fib(object):
+...     def __init__(self):
+...         self.a,self.b = 0,1
+...     def __iter__(self):
+...         return self
+...     def __next__(self):
+...         self.a,self.b = self.b,self.a+self.b
+...         if self.a > 100:
+...             raise StopIteration()
+...         return self.a
+...
+>>> for n in Fib():
+...     print(n)
+...
+1
+1
+2
+3
+5
+8
+13
+21
+34
+55
+89
+>>> [0,1,2,3,4,5][5]
+5
+>>> range(100)
+range(0, 100)
+>>> print(range(10))
+range(0, 10)
+>>> list(range(10))
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+>>> list(range(10))[5]
+5
+>>> Fib()[5]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'Fib' object does not support indexing
+>>> class Fib(object):
+...     def __getitem__(self,n):
+...         a,b = 1,1
+...         for x in range(n):
+...             a,b = b,a+b
+...         return a
+...
+>>> f = Fib()
+>>> f[0]
+1
+>>> f[1]
+1
+>>> Fib()[0]
+1
+>>> f[2]
+2
+>>> f[3]
+3
+>>> f[10]
+89
+>>> f[100]
+573147844013817084101
+>>> class Fib(object):
+...     def __getitem__(self,n):
+...         a,b = 0,1
+...         for x in range(n):
+...             a,b = b,a+b
+...         return a
+...
+>>> f = Fib()
+>>> f[0]
+0
+>>> f[1]
+1
+>>> Fib()[0]
+0
+>>> f[2]
+1
+>>> f[3]
+2
+>>> for x in range(10):
+...     a
+...
+Traceback (most recent call last):
+  File "<stdin>", line 2, in <module>
+NameError: name 'a' is not defined
+>>>
+>>> a,b = 1,1
+>>> for x in range(10):
+...     a,b = b,a+b
+...
+...
+>>> def HHH():
+...
+
+10.24
+
+>>> class Fib(object):
+...     def __getitem__(self,n):
+...         a,b = 0,1
+...         for x in range(n):
+...             a,b = b,a+b
+...             print(a)
+...         return a
+...
+>>> Fib().__getitem__(10)
+1
+1
+2
+3
+5
+8
+13
+21
+34
+55
+55
+
+>>> class Fib(object):
+...     def __getitem__(self,n):
+...         a,b = 1,1
+...         for x in range(n):
+...             a,b = b,a+b
+...             print(a)
+...         return a
+...
+>>> Fib().__getitem__(10)
+1
+2
+3
+5
+8
+13
+21
+34
+55
+89
+89
+
+SDK and URL--> API
+>>> class Chain(object):
+...     def __init__(self,path=''):
+...         self._path = path
+...     def __getattr__(self,path):
+...         return Chain('%s/%s'%(self._path,path))
+...     def __str__(self):
+...         return self._path
+...     __repr__ = __str__
+...
+>>> Chain().status.user.timeline.list
+/status/user/timeline/list
+
+
+>>>class Student(object):
+...    def __init__(self, name):
+...        self.name = name
+...    def __call__(self):
+...        print('My name is %s.' % self.name
+>>> s = Student('Michael')
+>>> s() # self参数不要传入
+My name is Michael.
+
+>>> callable(Student())
+True
+>>> callable(max)
+True
+>>> callable([1, 2, 3])
+False
+>>> callable(None)
+False
+>>> callable('str')
+False
+通过callable()函数，我们就可以判断一个对象是否是“可调用”对象。
+
+__call__()还可以定义参数。对实例进行直接调用就好比对一个函数进行调用一样，所以你完全可以把对象看成函数，把函数看成对象，因为这两者之间本来就没啥根本的区别。
+如果你把对象看成函数，那么函数本身其实也可以在运行期动态创建出来，因为类的实例都是运行期创建出来的，这么一来，我们就模糊了对象和函数的界限。
+>>> class X(object):
+...      def __init__(self,a,b):
+...          self.a = a
+...          self.b = b
+...      def __call__(self,a,b):
+...          self.a = a
+...          self.b = b
+...          return self.a*self.b
+...
+>>> x = X(1,2)
+>>> x()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: __call__() missing 2 required positional arguments: 'a' and 'b'
+>>> x(2,3)
+6
+>>> x(2,-3)
+-6
+>>> x(6,-3)
+-18
+
+>>> class X(object):
+...      def __call__(self,a,b):
+...          self.a = a
+...          self.b = b
+...          return self.a*self.b
+...
+>>> x = X()
+>>> x()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: __call__() missing 2 required positional arguments: 'a' and 'b'
+>>> x(6,6)
+36
+>>> x(6,60)
+360
+
+参考-url1 = 'https://blog.csdn.net/yaokai_assultmaster/article/details/70256621'
+url2 = 'https://blog.csdn.net/csdnwgf/article/details/80146854?utm_source=blogxgwz5'
+其他定制类参考Python官方文档:url = 'https://docs.python.org/3/reference/datamodel.html#special-method-names'
+
+思考题：
+>>> class Chain(object):
+...     def __init__(self,path=''):
+...         self._path = path
+...     def __getattr__(self,path):
+...         return Chain('%s/%s'%(self._path,path))
+...     def __str__(self):
+...         return self._path
+...     __call__ = __getattr__
+...     __repr__ = __str__
+...
+>>> Chain().users('Michael').repos
+/users/Michael/repos
+>>> Chain().status.user.timeline.list
+/status/user/timeline/list
