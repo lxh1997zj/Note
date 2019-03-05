@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<h1 style="font-style:italic">欢迎来到学生信息管理系统!</h1>
+<h3>请先登录</h3>
+{% if message %}
+<P style="color:red">{{message}}</P>
+{% endif %}
+<form action="/signin" method="post">
+    <p>
+        Username:
+        <input name="username" placeholder="Username" value="{{ username }}">
+    </p>
+    <P>
+        Password:
+        <input name="password" placeholder="Password" type="password">
+    </P>
+    <p>
+        <button type="submit">Sign In</button>
+    </p>
+</form>
+<p>
+    No account? &nbsp;&nbsp;&nbsp;
+    <a href="/register">Register</a>
+</p>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+</head>
+<body>
+<h1 style="font-style:italic">注册</h1>
+{% if message %}
+<P style="color:red">{{message}}</P>
+{% endif %}
+<form action="/register" method="post">
+    <P>
+        Name:
+        <input name="name" placeholder="Name" value="{{ name }}">
+    </P>
+    <P>
+        Gender:
+        <input name="gender" placeholder="Gender" type="radio" value="{{ gender_boys }}">Boys
+        <input name="gender" placeholder="Gender" type="radio" value="{{ gender_girls }}">Girls
+    </P>
+    <P>
+        Role:
+        <input name="role" placeholder="Role" type="radio" value="{{ role_admin }}">Admin
+        <input name="role" placeholder="Role" type="radio" value="{{ role_teacher }}">Teacher
+        <input name="role" placeholder="Role" type="radio" value="{{ role_student }}">Student
+    </P>
+    <P>
+        Birthday:
+        <input name="birthday" placeholder="Birthday" type="date">
+    </P>
+    <P>
+        Nationnlity:
+        <input name="nationality" placeholder="Nationnlity">
+    </P>
+    <P>
+        Politics Status:
+        <input name="politics_status" placeholder="Politics Status">
+    </P>
+    <P>
+        Job:
+        <input name="job" placeholder="Job">
+    </P>
+    <p>
+        Username:
+        <input name="username" placeholder="Username" value="{{ username }}">
+    </p>
+    <P>
+        Password:
+        <input name="password" placeholder="Password" type="password">
+    </P>
+    <p>
+        <button type="submit">Register</button>
+    </p>
+</form>
+</body>
+</html>
